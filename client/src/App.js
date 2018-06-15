@@ -4,6 +4,8 @@ import './App.css';
 import { Button } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Panel, Grid, Row, Col, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
 
+var player1Data = [];
+
 class Customers extends Component{
   constructor() {
     super();
@@ -38,6 +40,24 @@ function handleClick() {
 
 
 class PlayerPanel extends Component{
+  constructor(){
+    super();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      value : ''
+    };
+  }
+
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
   render(){
     return(
     <div>
@@ -46,16 +66,13 @@ class PlayerPanel extends Component{
         <Panel.Title>Player 1</Panel.Title>
       </Panel.Heading>
       <Panel.Body>
-        <form>
-        <FormGroup
-          controlId="formBasicText">
-          <InputGroup>
-            <FormControl type="text" placeholder="Enter players' name"/>
-            <InputGroup.Addon>Go</InputGroup.Addon>
-          </InputGroup>
-          <FormControl.Feedback />
-        </FormGroup>
-        </form>
+        <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
       </Panel.Body>
     </Panel>
     </div>
