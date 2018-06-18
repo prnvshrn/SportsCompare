@@ -2,41 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button } from 'react-bootstrap';
-import { Navbar, Nav, NavItem, NavDropdown, Table, MenuItem, Panel, Grid, Row, Col, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
-
+import { Navbar, Nav, NavItem, NavDropdown, Table, MenuItem, Panel, Grid, Row, Col, FormGroup, FormControl, ControlLabel, InputGroup, ProgressBar } from 'react-bootstrap';
 var player1Data = [];
-
-class Customers extends Component{
-  constructor() {
-    super();
-    this.state = {
-      customers: []
-    };
-  }
-
-  componentDidMount() {
-    fetch('/football/Ryan Giggs')
-      .then(res => res.json())
-      .then(customers => this.setState({customers}));
-  }
-
-  render(){
-    return(
-        <div>
-        <h2>Customers</h2>
-        <ul>
-        {this.state.customers.map(customer => 
-          <li key={customer._id}>{customer.name}</li>
-        )}
-        </ul>
-        </div>
-      );
-  }
-}
-
-function handleClick() {
-  alert('You have clicked on me');
-}
 
 
 class PlayerPanel extends Component{
@@ -52,6 +19,7 @@ class PlayerPanel extends Component{
       player1_stats: [],
       value2: '',
       player2_stats: [],
+      test: 'test'
     };
   }
 
@@ -186,6 +154,13 @@ class PlayerPanel extends Component{
                   <tr>
                     <td>Position</td>
                     <td>{player2_stats.position}</td>
+                    <td>{this.state.player1_stats[0].position}</td>
+                  </tr>
+                  <tr>
+                    <ProgressBar>
+                      <ProgressBar bsStyle="primary" now={this.state.player1_stats[0].assists} key={1} />
+                      <ProgressBar bsStyle="info" now={{this.state.player1_stats[0].assists}*2} key={2} />
+                      </ProgressBar>
                   </tr>
                   <tr>
                     <td>Goals</td>
@@ -243,9 +218,15 @@ class PlayerPanel extends Component{
     </Panel.Body>
     </Panel>
     </Col>
-
     </Row>
     </Grid>
+
+    
+    <ProgressBar>
+      <ProgressBar bsStyle="warning" now={20} key={2} />
+      <ProgressBar active bsStyle="danger" now={80} key={3} />
+    </ProgressBar>
+
     </div>
     );
   }
