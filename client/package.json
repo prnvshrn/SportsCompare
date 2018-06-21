@@ -6,6 +6,7 @@
     "d3": "*",
     "react": "^16.4.0",
     "react-bootstrap": "*",
+    "react-charts-plus": "^0.4.5",
     "react-d3": "^0.4.0",
     "react-d3-basic": "^1.6.11",
     "react-dom": "^16.4.0",

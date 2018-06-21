@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button } from 'react-bootstrap';
+import { Button, Well } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, Table, MenuItem, Panel, Grid, Row, Col, FormGroup, FormControl, ControlLabel, InputGroup, ProgressBar } from 'react-bootstrap';
-var player1Data = [];
-
+import StatComponent from './stat_component.js';
 
 class PlayerPanel extends Component{
   constructor(){
@@ -59,74 +58,7 @@ class PlayerPanel extends Component{
         <form onSubmit={this.handleSubmit}>
           <input type="text" value={this.state.value} placeholder="Enter a player's name" onChange={this.handleChange} />
         <input type="submit" value="Submit" />
-      </form>
-      
-    
-        {this.state.player1_stats.map(player1_stats => 
-          <div key={player1_stats.name}>
-                <Table responsive>
-                <tbody>
-                  <tr>
-                    <td>Name</td>
-                    <td>{player1_stats.name}</td>
-                  </tr>
-                  <tr>
-                    <td>Position</td>
-                    <td>{player1_stats.position}</td>
-                  </tr>
-                  <tr>
-                    <td>Goals</td>
-                    <td>{player1_stats.goals}</td>
-                  </tr>
-                  <tr>
-                    <td>Shooting Accuracy</td>
-                    <td>{player1_stats.shooting_accuracy}</td>
-                  </tr>
-                  <tr>
-                    <td>Big Chances Missed</td>
-                    <td>{player1_stats.big_chances_miss}</td>
-                  </tr>
-                  <tr>
-                    <td>Error to Goals</td>
-                    <td>{player1_stats.error_to_goal}</td>
-                  </tr>
-                  <tr>
-                    <td>Interceptions</td>
-                    <td>{player1_stats.interceptions}</td>
-                  </tr>
-                  <tr>
-                    <td>Blocked Shots</td>
-                    <td>{player1_stats.blocked_shots}</td>
-                  </tr>
-                  <tr>
-                    <td>Big chances created</td>
-                    <td>{player1_stats.big_chance_created}</td>
-                  </tr>
-                  <tr>
-                    <td>Assists</td>
-                    <td>{player1_stats.assists}</td>
-                  </tr>
-                  <tr>
-                    <td>Tackle Success</td>
-                    <td>{player1_stats.tackle_success}</td>
-                  </tr>
-                  <tr>
-                    <td>Duels won</td>
-                    <td>{player1_stats.duel_won}</td>
-                  </tr>
-                  <tr>
-                    <td>Aerial Battle won</td>
-                    <td>{player1_stats.aerial_battle_won}</td>
-                  </tr>
-                  <tr>
-                    <td>Accurate Long Balls</td>
-                    <td>{player1_stats.accurate_long_balls}</td>
-                  </tr>
-                </tbody>
-                </Table>
-          </div>
-        )}
-    
+      </form>      
     </Panel.Body>
     </Panel>
     </Col>
@@ -141,92 +73,29 @@ class PlayerPanel extends Component{
           <input type="text" value={this.state.value2} placeholder="Enter a player's name" onChange={this.handleChange2} />
         <input type="submit" value="Submit" />
       </form>
-      
-    
-        {this.state.player2_stats.map(player2_stats => 
-          <div key={player2_stats.name}>
-                <Table responsive>
-                <tbody>
-                  <tr>
-                    <td>Name</td>
-                    <td>{player2_stats.name}</td>
-                  </tr>
-                  <tr>
-                    <td>Position</td>
-                    <td>{player2_stats.position}</td>
-                    <td>{this.state.player1_stats[0].position}</td>
-                  </tr>
-                  <tr>
-                    <ProgressBar>
-                      <ProgressBar bsStyle="primary" now={this.state.player1_stats[0].assists} key={1} />
-                      <ProgressBar bsStyle="info" now={{this.state.player1_stats[0].assists}*2} key={2} />
-                      </ProgressBar>
-                  </tr>
-                  <tr>
-                    <td>Goals</td>
-                    <td>{player2_stats.goals}</td>
-                  </tr>
-                  <tr>
-                    <td>Shooting Accuracy</td>
-                    <td>{player2_stats.shooting_accuracy}</td>
-                  </tr>
-                  <tr>
-                    <td>Big Chances Missed</td>
-                    <td>{player2_stats.big_chances_miss}</td>
-                  </tr>
-                  <tr>
-                    <td>Error to Goals</td>
-                    <td>{player2_stats.error_to_goal}</td>
-                  </tr>
-                  <tr>
-                    <td>Interceptions</td>
-                    <td>{player2_stats.interceptions}</td>
-                  </tr>
-                  <tr>
-                    <td>Blocked Shots</td>
-                    <td>{player2_stats.blocked_shots}</td>
-                  </tr>
-                  <tr>
-                    <td>Big chances created</td>
-                    <td>{player2_stats.big_chance_created}</td>
-                  </tr>
-                  <tr>
-                    <td>Assists</td>
-                    <td>{player2_stats.assists}</td>
-                  </tr>
-                  <tr>
-                    <td>Tackle Success</td>
-                    <td>{player2_stats.tackle_success}</td>
-                  </tr>
-                  <tr>
-                    <td>Duels won</td>
-                    <td>{player2_stats.duel_won}</td>
-                  </tr>
-                  <tr>
-                    <td>Aerial Battle won</td>
-                    <td>{player2_stats.aerial_battle_won}</td>
-                  </tr>
-                  <tr>
-                    <td>Accurate Long Balls</td>
-                    <td>{player2_stats.accurate_long_balls}</td>
-                  </tr>
-                </tbody>
-                </Table>
-          </div>
-        )}
-    
     </Panel.Body>
     </Panel>
     </Col>
     </Row>
-    </Grid>
-
+    </Grid>            
     
-    <ProgressBar>
-      <ProgressBar bsStyle="warning" now={20} key={2} />
-      <ProgressBar active bsStyle="danger" now={80} key={3} />
-    </ProgressBar>
-
+        {this.state.player2_stats.map(player2_stats => 
+          <div key={player2_stats.name}>
+                <StatComponent stat={'Goals'} stat1={this.state.player1_stats[0].goals} stat2={this.state.player2_stats[0].goals} />
+                <StatComponent stat={'Shooting Accuracy'} stat1={this.state.player1_stats[0].shooting_accuracy} stat2={this.state.player2_stats[0].shooting_accuracy} />
+                <StatComponent stat={'Big Chances Missed'} stat1={this.state.player1_stats[0].big_chances_miss} stat2={this.state.player2_stats[0].big_chances_miss} />
+                <StatComponent stat={'Error to Goals'} stat1={this.state.player1_stats[0].error_to_goal} stat2={this.state.player2_stats[0].error_to_goal} />
+                <StatComponent stat={'Interceptions'} stat1={this.state.player1_stats[0].interceptions} stat2={this.state.player2_stats[0].interceptions} />
+                <StatComponent stat={'Blocked Shots'} stat1={this.state.player1_stats[0].blocked_shots} stat2={this.state.player2_stats[0].blocked_shots} />
+                <StatComponent stat={'Big Chances Created'} stat1={this.state.player1_stats[0].big_chance_created} stat2={this.state.player2_stats[0].big_chance_created} />
+                <StatComponent stat={'Assists'} stat1={this.state.player1_stats[0].assists} stat2={this.state.player2_stats[0].assists} />
+                <StatComponent stat={'Tackle Success'} stat1={this.state.player1_stats[0].tackle_success} stat2={this.state.player2_stats[0].tackle_success} />
+                <StatComponent stat={'Duels Won'} stat1={this.state.player1_stats[0].duel_won} stat2={this.state.player2_stats[0].duel_won} />
+                <StatComponent stat={'Aerial Battles Won'} stat1={this.state.player1_stats[0].aerial_battle_won} stat2={this.state.player2_stats[0].aerial_battle_won} />
+                <StatComponent stat={'Accurate Long Balls'} stat1={this.state.player1_stats[0].accurate_long_balls} stat2={this.state.player2_stats[0].accurate_long_balls} />  
+          </div>
+        )}
+    
     </div>
     );
   }
