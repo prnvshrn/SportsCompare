@@ -1,0 +1,1 @@
+var elasticsearch = require('elasticsearch');

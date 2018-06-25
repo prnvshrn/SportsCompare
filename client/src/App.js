@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button, Well } from 'react-bootstrap';
+import { Button, Well, Image } from 'react-bootstrap';
 import { Navbar, Nav, NavItem, NavDropdown, Table, MenuItem, Panel, Grid, Row, Col, FormGroup, FormControl, ControlLabel, InputGroup, ProgressBar } from 'react-bootstrap';
 import StatComponent from './stat_component.js';
+import './App_style.css';
+import TestComponent from './test.js';
 
 class PlayerPanel extends Component{
   constructor(){
@@ -34,68 +36,68 @@ class PlayerPanel extends Component{
     event.preventDefault();
     fetch('/football/' + this.state.value)
       .then(res => res.json())
-      .then(player1_stats => this.setState({player1_stats}, () => console.log('Customers fetched...', player1_stats)));
+      .then(player1_stats => this.setState({player1_stats}));
   }
 
   handleSubmit2(event) {
     event.preventDefault();
-    fetch('/football/' + this.state.value2)
+    fetch('/football/' + this.state.value)
       .then(res => res.json())
-      .then(player2_stats => this.setState({player2_stats}, () => console.log('Customers fetched...', player2_stats)));
+      .then(player1_stats => this.setState({player1_stats}))
+      .then(
+        fetch('/football/' + this.state.value2)
+        .then(res => res.json())
+        .then(player2_stats => this.setState({player2_stats})));
   }
 
   render(){
     return(
     <div>
     <Grid>
-    <Row className="show-grid">
-    <Col xs={6} md={6}>
-    <Panel bsStyle="primary">
-      <Panel.Heading>
-        <Panel.Title>Player 1</Panel.Title>
-      </Panel.Heading>
-      <Panel.Body>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.value} placeholder="Enter a player's name" onChange={this.handleChange} />
-        <input type="submit" value="Submit" />
-      </form>      
-    </Panel.Body>
-    </Panel>
-    </Col>
-
-    <Col xs={6} md={6}>
-    <Panel bsStyle="info">
-      <Panel.Heading>
-        <Panel.Title>Player 2</Panel.Title>
-      </Panel.Heading>
-      <Panel.Body>
+      <Well>
+        <Row>
         <form onSubmit={this.handleSubmit2}>
-          <input type="text" value={this.state.value2} placeholder="Enter a player's name" onChange={this.handleChange2} />
-        <input type="submit" value="Submit" />
-      </form>
-    </Panel.Body>
-    </Panel>
-    </Col>
-    </Row>
+          <Col xs={5} md={5}>
+            <FormGroup>            
+            <FormControl type="text" value={this.state.value} placeholder="Enter a player's name" onChange={this.handleChange} />
+            </FormGroup>
+          </Col>
+          <Col xs={1} md={1}>
+            <Image src="./vs_icon.png" className="vs_icon_img" rounded/>
+          </Col>
+          <Col xs={5} md={5}>
+            <FormGroup>
+            <FormControl type="text" value={this.state.value2} placeholder="Enter a player's name" onChange={this.handleChange2} />
+            </FormGroup>
+          </Col>
+          <Col xs={1} md={1}>
+            <FormGroup>
+            <Button type="submit" bsStyle="success">Go</Button>
+            </FormGroup>
+          </Col>
+        </form>  
+        </Row>
+      </Well>
     </Grid>            
     
         {this.state.player2_stats.map(player2_stats => 
           <div key={player2_stats.name}>
-                <StatComponent stat={'Goals'} stat1={this.state.player1_stats[0].goals} stat2={this.state.player2_stats[0].goals} />
-                <StatComponent stat={'Shooting Accuracy'} stat1={this.state.player1_stats[0].shooting_accuracy} stat2={this.state.player2_stats[0].shooting_accuracy} />
-                <StatComponent stat={'Big Chances Missed'} stat1={this.state.player1_stats[0].big_chances_miss} stat2={this.state.player2_stats[0].big_chances_miss} />
-                <StatComponent stat={'Error to Goals'} stat1={this.state.player1_stats[0].error_to_goal} stat2={this.state.player2_stats[0].error_to_goal} />
-                <StatComponent stat={'Interceptions'} stat1={this.state.player1_stats[0].interceptions} stat2={this.state.player2_stats[0].interceptions} />
-                <StatComponent stat={'Blocked Shots'} stat1={this.state.player1_stats[0].blocked_shots} stat2={this.state.player2_stats[0].blocked_shots} />
-                <StatComponent stat={'Big Chances Created'} stat1={this.state.player1_stats[0].big_chance_created} stat2={this.state.player2_stats[0].big_chance_created} />
-                <StatComponent stat={'Assists'} stat1={this.state.player1_stats[0].assists} stat2={this.state.player2_stats[0].assists} />
-                <StatComponent stat={'Tackle Success'} stat1={this.state.player1_stats[0].tackle_success} stat2={this.state.player2_stats[0].tackle_success} />
-                <StatComponent stat={'Duels Won'} stat1={this.state.player1_stats[0].duel_won} stat2={this.state.player2_stats[0].duel_won} />
-                <StatComponent stat={'Aerial Battles Won'} stat1={this.state.player1_stats[0].aerial_battle_won} stat2={this.state.player2_stats[0].aerial_battle_won} />
-                <StatComponent stat={'Accurate Long Balls'} stat1={this.state.player1_stats[0].accurate_long_balls} stat2={this.state.player2_stats[0].accurate_long_balls} />  
+                <StatComponent 
+                name1={this.state.player1_stats[0].name} name2={this.state.player2_stats[0].name} position1={this.state.player1_stats[0].position} position2={this.state.player2_stats[0].position}
+                goals1={this.state.player1_stats[0].goals} goals2={this.state.player2_stats[0].goals} assists1={this.state.player1_stats[0].assists} assists2={this.state.player2_stats[0].assists} 
+                shooting_accuracy1={this.state.player1_stats[0].shooting_accuracy} shooting_accuracy2={this.state.player2_stats[0].shooting_accuracy}  
+                big_chance_created1={this.state.player1_stats[0].big_chance_created} big_chance_created2={this.state.player2_stats[0].big_chance_created}
+                big_chances_miss1={this.state.player1_stats[0].big_chances_miss} big_chances_miss2={this.state.player2_stats[0].big_chances_miss}
+                accurate_long_balls1={this.state.player1_stats[0].accurate_long_balls} accurate_long_balls2={this.state.player2_stats[0].accurate_long_balls}
+                tackle_success1={this.state.player1_stats[0].tackle_success} tackle_success2={this.state.player2_stats[0].tackle_success}
+                duel_won1={this.state.player1_stats[0].duel_won} duel_won2={this.state.player2_stats[0].duel_won} 
+                aerial_battle_won1={this.state.player1_stats[0].aerial_battle_won} aerial_battle_won2={this.state.player2_stats[0].aerial_battle_won}
+                interceptions1={this.state.player1_stats[0].interceptions} interceptions2={this.state.player2_stats[0].interceptions}
+                blocked_shots1={this.state.player1_stats[0].blocked_shots} blocked_shots2={this.state.player2_stats[0].blocked_shots}
+                error_to_goal1={this.state.player1_stats[0].error_to_goal} error_to_goal2={this.state.player2_stats[0].error_to_goal}
+                />
           </div>
         )}
-    
     </div>
     );
   }
@@ -145,13 +147,7 @@ class App extends Component {
     return (      
       <div className="App">
       <NavbarComponent/>
-      <Grid>
-        <Row className="show-grid">
-          <Col xs={12} md={12}>
-            <PlayerPanel/>
-          </Col>
-        </Row>
-      </Grid>
+      <PlayerPanel/>
       </div>
     );
   }

@@ -9,7 +9,9 @@
   "dependencies": {
     "body-parser": "*",
     "d3": "^5.5.0",
+    "elasticsearch": "^15.0.0",
     "express": "*",
+    "mongo-elasticsearch": "^1.0.0",
     "mongoose": "*",
     "react-bootstrap": "^0.32.1"
   },

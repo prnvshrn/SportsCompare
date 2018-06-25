@@ -1,0 +1,19 @@
+$primaryColor: #eeffcc;
+
+.test {
+    background: $primaryColor;
+}
+
+.horizontal-line{
+	margin-top: 1.0em;
+    margin-bottom: 1.0em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.vs_icon_img{
+	height: 30px;
+	width: 30px;
+}
