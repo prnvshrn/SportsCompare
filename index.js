@@ -8,6 +8,8 @@ var db = mongoose.connection;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var mongo_elasticsearch = require('mongo-elasticsearch');
+var graphqlHTTP = require('express-graphql');
+var graphql_schema = require('./graphql_schema.js');
 
 app.get('/football/:name', function(req, res){
 	Football.find({'name': req.params.name}).then(function(player){
@@ -16,24 +18,12 @@ app.get('/football/:name', function(req, res){
 
 });
 
-app.get('/elastic', function(req, res){
-	var t = new mongo_elasticsearch.Transfer({
-  esOpts: {
-    host: 'localhost:9200',
-    log: 'trace'
-  },
-  esTargetType: 'tweet',
-  esTargetIndex: 'twitter',
-  mongoUri: 'mongodb://admin2:admin2@ds251240.mlab.com:51240/sports_compare',
-  mongoSourceCollection: 'Football'
-});
- 
-t.start().then(function(results) {
-  console.log('Exiting');
-  console.log(results);
-  process.exit();
-});
-});
+app.use('/graphql', graphqlHTTP({
+    schema: graphql_schema,
+    debug: true,
+    graphiql: true
+})
+);
 
 app.listen(3001);
 console.log('Started on port 3001')
