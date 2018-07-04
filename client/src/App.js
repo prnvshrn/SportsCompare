@@ -8,11 +8,6 @@ import './App_style.css';
 import TestComponent from './test.js';
 import PlayerStateComponent from './baseball_stat_component.js';
 
-const ThemeContext = React.createContext({
-  test: 'light',
-  toggleTheme: () => {}
-});
-
 class PlayerPanel extends Component{
   constructor(){
     super();
@@ -60,7 +55,12 @@ class PlayerPanel extends Component{
     return(
     <div>
     <Grid>
-      <Well>
+        <Row>
+          <h3><Image src="./Soccer-ball-icon.png" className="vs_icon_img" rounded /> FOOTBALL</h3>
+        </Row>
+        <Row>
+          Please enter full name of players, eg. Steven Gerrard
+        </Row>
         <Row>
         <form onSubmit={this.handleSubmit2}>
           <Col xs={5} md={5}>
@@ -83,7 +83,6 @@ class PlayerPanel extends Component{
           </Col>
         </form>  
         </Row>
-      </Well>
     </Grid>            
     
         {this.state.player2_stats.map(player2_stats => 
@@ -149,7 +148,10 @@ class BaseballPlayerPanel extends Component{
     <div>
     <Grid>
         <Row>
-          <Image src="./baseball_icon.png" className="vs_icon_img" />
+          <h3><Image src="./baseball_icon.png" className="vs_icon_img" rounded /> BASEBALL</h3>
+        </Row>
+        <Row>
+          Please enter full name of players, eg. David Ortiz
         </Row>
         <Row>
         <form onSubmit={this.handleSubmit2}>
@@ -159,7 +161,7 @@ class BaseballPlayerPanel extends Component{
             </FormGroup>
           </Col>
           <Col xs={1} md={1}>
-            <Image src="./vs_icon.png" className="vs_icon_img" rounded/>
+            <Image src="./vs_icon.png" className="vs_icon_img" rounded /> 
           </Col>
           <Col xs={5} md={5}>
             <FormGroup>
@@ -260,13 +262,6 @@ class NavbarComponent extends Component{
           </NavItem>
           <NavItem eventKey={4} href="#">
             American Football
-          </NavItem>
-        </Nav>
-        <Nav pullRight>
-          <NavItem eventKey={1} href="#">
-          </NavItem>
-          <NavItem eventKey={2} href="#">
-            Link Right
           </NavItem>
         </Nav>
       </Navbar.Collapse>
