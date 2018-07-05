@@ -8,7 +8,6 @@ mongoose.connect('mongodb://admin2:admin2@ds251240.mlab.com:51240/sports_compare
 var db = mongoose.connection;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-var mongo_elasticsearch = require('mongo-elasticsearch');
 var graphqlHTTP = require('express-graphql');
 var graphql_schema = require('./graphql_schema.js');
 

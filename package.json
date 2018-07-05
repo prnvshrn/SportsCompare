@@ -10,12 +10,9 @@
   },
   "dependencies": {
     "body-parser": "*",
-    "d3": "^5.5.0",
-    "elasticsearch": "^15.0.0",
     "express": "*",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
-    "mongo-elasticsearch": "^1.0.0",
     "mongoose": "*",
     "react-bootstrap": "^0.32.1"
   },
