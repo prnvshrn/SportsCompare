@@ -13,8 +13,7 @@
     "express": "*",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
-    "mongoose": "*",
-    "react-bootstrap": "^0.32.1"
+    "mongoose": "*"
   },
   "author": "Pranav Sharan",
   "license": "ISC"

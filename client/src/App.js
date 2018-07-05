@@ -215,7 +215,6 @@ class BaseballPlayerPanel extends Component{
         <PlayerStateComponent stat='R' stat1={this.state.player1_stats[0].R} stat2={this.state.player2_stats[0].R} />
         <PlayerStateComponent stat='H' stat1={this.state.player1_stats[0].H} stat2={this.state.player2_stats[0].H} />
         <PlayerStateComponent stat='HR' stat1={this.state.player1_stats[0].HR} stat2={this.state.player2_stats[0].HR} />
-        <PlayerStateComponent stat='AB' stat1={this.state.player1_stats[0].AB} stat2={this.state.player2_stats[0].AB} />
         <PlayerStateComponent stat='RBI' stat1={this.state.player1_stats[0].RBI} stat2={this.state.player2_stats[0].RBI} />
         <PlayerStateComponent stat='SB' stat1={this.state.player1_stats[0].SB} stat2={this.state.player2_stats[0].SB} />
         <PlayerStateComponent stat='AVG' stat1={this.state.player1_stats[0].AVG} stat2={this.state.player2_stats[0].AVG} />
