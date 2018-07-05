@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var graphqlHTTP = require('express-graphql');
 var graphql_schema = require('./graphql_schema.js');
+var path = require('path');
 
 app.get('/football/:name', function(req, res){
 	Football.find({'name': req.params.name}).then(function(player){
@@ -29,6 +30,10 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 })
 );
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port);
