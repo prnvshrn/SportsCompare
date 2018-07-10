@@ -1,4 +1,6 @@
 $primaryColor: #eeffcc;
+$bg-img: url('/img/bg.jpg');
+
 
 .test {
     background: $primaryColor;
@@ -17,3 +19,26 @@ $primaryColor: #eeffcc;
 	height: 30px;
 	width: 30px;
 }
+
+.no_border{
+	border-style:none;
+}
+
+.wedged_rectangle {
+  margin: 20px;
+  width: 200px;
+  height: 100px;
+  display: inline-block;
+  background: yellow;    
+  border: 1px solid black;
+  transform: skewX(-10deg);
+ }
+
+.styled_font{
+	font-family: "Impact"
+}
+
+.helvetica_font{
+	font-family: "Georgia"
+}
+
