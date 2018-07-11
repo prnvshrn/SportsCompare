@@ -7,6 +7,7 @@ JavaScript, React, Node, GraphQL
 ## How To Compare
 1. Select a sport from the header
 2. Enter full names (First Name + Last Name) and hit 'Go'
+![alt text](/screen2.png)<br/>
 
 ## View in GraphQL
 1. Append 'graphql' to the url
@@ -21,3 +22,4 @@ JavaScript, React, Node, GraphQL
   }
 }
 ```
+![alt text](/screen1.png)<br/>
