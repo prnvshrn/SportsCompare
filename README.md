@@ -1,5 +1,5 @@
 # SportsCompare
-Web application for comparing two athletes
+Web application for comparing two athletes. Hosted on Heroku https://sports-compare.herokuapp.com/
 
 ## Technologies Used
 JavaScript, React, Node, GraphQL
